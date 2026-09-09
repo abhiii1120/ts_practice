@@ -96,3 +96,10 @@ function print(item:number | string):void { // here we are declaring item as uni
   }
 }
 
+//function parameter and return typing
+function total(price:number , quantity:number) : number { // added return type as number
+  return price * quantity;
+}
+
+// console.log(total("499",57))  here we cant pass any other datatype rather than number
+console.log(total(12,23)) // this is correct way
