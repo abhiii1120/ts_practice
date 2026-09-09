@@ -86,3 +86,13 @@ if(typeof ab === "number"){
 let status : "pending" | "success" | "failed"; // this is called literals here we can select values from this three only 
 
 status = "failed";
+
+// narrowing
+function print(item:number | string):void { // here we are declaring item as union of number and string
+  if(typeof item === 'string'){ // here we are breaking union into specific type and this is called narrowing
+    console.log(item.toLocaleLowerCase());
+  } else {
+    console.log(item)
+  }
+}
+
