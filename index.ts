@@ -97,9 +97,38 @@ function print(item:number | string):void { // here we are declaring item as uni
 }
 
 //function parameter and return typing
-function total(price:number , quantity:number) : number { // added return type as number
-  return price * quantity;
+function total(price:number , quantity?:number) : number { // added return type as number and also did quantity as optional parameter
+  return price * (quantity ?? 1); // added default value as 1 if no quantity value is send this is also short form of quantity ? quantity : 1
 }
 
 // console.log(total("499",57))  here we cant pass any other datatype rather than number
 console.log(total(12,23)) // this is correct way
+
+
+//any vs unknown
+let abc :any = JSON.parse("{}");
+// here any disables checks so it can explode at runtime
+// abc.anything();
+
+let abcd : unknown = JSON.parse("{}");
+// abcd.anything() --- here we have to prove that what type is it before using it so 
+
+
+//enum --- enum creates a runtime object;
+enum Role { Admin = "ADMIN" , User = "USER"};
+
+console.log(Role.Admin);
+
+
+//keyof example here we can get keynames 
+interface User1 {
+  id:number;
+  name:string;
+  email:string;
+}
+
+type UserKeys = keyof User1;
+
+let userKeys : UserKeys;
+
+userKeys = "name";
