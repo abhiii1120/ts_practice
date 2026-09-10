@@ -43,7 +43,7 @@ const user = {
     email: "abc@gmail.com",
     name: "hehe",
 };
-//if we use this variable without any condition then we will get common methods of both the data types 
+//if we use this variable without any condition then we will get common methods of both the data types
 // and if we use it with condition then we will get data type specific methods
 let ab; // this is called as union
 if (Math.random() > 0.5) {
@@ -59,11 +59,13 @@ if (typeof ab === "string") {
 if (typeof ab === "number") {
     console.log(ab); // here we will get number specifc methods
 }
-let status; // this is called literals here we can select values from this three only 
+let status; // this is called literals here we can select values from this three only
 status = "failed";
 // narrowing
 function print(item) {
-    if (typeof item === 'string') { // here we are breaking union into specific type and this is called narrowing
+    // here we are declaring item as union of number and string
+    if (typeof item === "string") {
+        // here we are breaking union into specific type and this is called narrowing
         console.log(item.toLocaleLowerCase());
     }
     else {
@@ -72,6 +74,7 @@ function print(item) {
 }
 //function parameter and return typing
 function total(price, quantity) {
+    // added return type as number and also did quantity as optional parameter
     return price * (quantity ?? 1); // added default value as 1 if no quantity value is send this is also short form of quantity ? quantity : 1
 }
 // console.log(total("499",57))  here we cant pass any other datatype rather than number
@@ -81,14 +84,30 @@ let abc = JSON.parse("{}");
 // here any disables checks so it can explode at runtime
 // abc.anything();
 let abcd = JSON.parse("{}");
-// abcd.anything() --- here we have to prove that what type is it before using it so 
-//enum
+// abcd.anything() --- here we have to prove that what type is it before using it so
+//enum --- enum creates a runtime object;
 var Role;
 (function (Role) {
     Role["Admin"] = "ADMIN";
     Role["User"] = "USER";
 })(Role || (Role = {}));
-;
 console.log(Role.Admin);
+let userKeys;
+userKeys = "name";
+//classes and access modifiers
+class Person {
+    name = "hehe"; // see so here our access modifier is public so it is accesible outside of a class
+    id = 1; // see this is private so this can be only accessible inside the class
+    email = "hehe"; // so this is protected so this can't be accessible outside of the class but can be accessible by child class which inherit it's class
+    age = 30; //here we can't change it's valueee only we can read it
+}
+class employee extends Person {
+    greeting() {
+        console.log(this.email, this.age);
+    }
+}
+const person = new employee();
+person.name = "abhi";
+person.greeting();
 export {};
 //# sourceMappingURL=index.js.map
